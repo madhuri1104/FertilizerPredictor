@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<?php include 'includes/title.php';?>
+<meta name="description" content="Ela Admin - HTML5 Admin Template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+<link rel="shortcut icon" href="/static/assets/img/student-grade.jpg" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+<link rel="stylesheet" href="/static/assets/css/cs-skin-elastic.css">
+<link rel="stylesheet" href="/static/assets/css/style2.css">
+<!-- <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css"> -->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+<link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="/static/sty.css">
+
+<style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+.outer_block {
+           
+        }
+
+        .block {
+            margin: auto;
+            margin-bottom: 20%;
+            width: 95%;
+            background-color: #04AA6D;
+            border: 2px solid black;
+            padding: 10px;
+            align-items: center;
+            text-align: center;
+            font-size: x-large;
+            color: white;
+        }
+    </style>
+
+    <title>Fertilizer Prediction</title>
+</head>
+
+
+<body>
+<!-- Left Panel -->
+{% include 'leftmenu.html' %}
+<!-- /#left-panel -->
+<!-- Right Panel -->
+<div id="right-panel" class="right-panel">
+    <!-- Header-->
+{% include 'header.html' %}
+    <div class="outer_block">
+        <!-- Left Panel -->
+
+        <section class="Form mt-5">
+            <div class="container ">
+                <form method="POST" , id="details" action="{{url_for('prediction')}}">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col">
+                                <label>Mobile Number of User</label>
+                                <input type="number" class="form-control" id="Mobile_Number" name="Mobile_Number" placeholder="Please enter Mobile Number of User" required/>
+                            </div>
+                            <div class="col">
+                                <label>Location of Farm</label>
+                                <input type="text" class="form-control" id="Location_of_Farm" name="Location_of_Farm" placeholder="Please enter Location of Farm" required/>
+                            </div>
+                            <div class="col">
+                                <label>Survey/Gat Number</label>
+                                <input type="number" class="form-control" id="Gat_Number" name="Gat_Number" placeholder="Please enter Survey/Gat Number" required/>
+                            </div>
+                            <div class="col">
+                                <label>Submitted Date</label>
+                                <input type="date" class="form-control" id="Submitted_Date" name="Submitted_Date" placeholder="Please enter Submitted Date" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Temperature</label>
+                                <input type="number" class="form-control" id="Temperature" name="Temperature" step="any" placeholder="Please enter Temperature" required/>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Humidity</label>
+                                <input type="number" class="form-control" id="Humidity" name="Humidity" step="any" placeholder="Please enter Humidity" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-6">
+                                <label>Nitrogen</label>
+                                <input type="number" class="form-control" id="N" name="N" step="any" placeholder="Please enter Nitrogen" required/>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Phosphorous</label>
+                                <input type="number" class="form-control" id="P" name="P" step="any" placeholder="Please enter Phosphorous" required/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-4">
+                                <label>Potasium</label>
+                                <input type="number" class="form-control" id="K" name="K" step="any" placeholder="Please enter Potasium" required/>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Crop Type</label>
+
+                                <select class="custom-select" id="inputGroupSelect01" name="Crop" placeholder="Please enter Crop Type" required>
+					
+					<option value="1">rice</option>
+					<option value="2">Coconut</option>
+					<option value="3">Maize</option>
+					<option value="4">Cotton</option>
+					<option value="5">Tabacco</option>
+					<option value="6">Paddy</option>
+					<option value="7">Barley</option>
+					<option value="8">Wheat</option>
+					<option value="9">Millets</option>
+					<option value="10">Oil seeds</option>
+					<option value="11">Sugarcane</option>
+					<option value="12">Pulses</option>
+					<option value="13">Ground Nuts</option>
+				</select>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label>Soil Type</label>
+
+                                <select class="custom-select" id="inputGroupSelect01" name="Soil" placeholder="Please enter Soil Type" required>
+					
+					<option value="1">Clayey</option>
+					<option value="2">Laterite</option>
+					<option value="3">silty clay</option>
+					<option value="4">Sandy</option>
+					<option value="5">coastal</option>
+					<option value="6">clay loam</option>
+					<option value="7">alluvial</option>
+					<option value="8">sandy</option>
+					<option value="9">Loamy</option>
+					<option value="10">Black</option>
+					<option value="11">Red</option>
+					
+				</select>
+                            </div>
+
+                        </div>
+
+
+                        <!-- <div class="form-group row">
+		<div class="col-lg-6">
+			<label>Best Fertilizer For Your Farm</label>
+				<input type="number" class="form-control" placeholder=""/>
+		</div>
+	</div> -->
+                    </div>
+        </section>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-lg-6">
+                    <button type="submit" class="btn btn-primary mr-2">Predict</button>
+                    <br>
+                </div>
+                <div class="col-lg-6 text-lg-right">
+
+                    <button type="reset" class="btn btn-danger">Clear Form</button>
+                    <br>
+                </div>
+            </div>
+        </div>
+        </container>
+        </form>
+    </div>
+
+
+
+
+
+        {%if data == 0%}
+        <div>
+            <center>
+                <h4>Best fertilizer for your Farm</h4>
+            </center>
+            <br>
+            <div class="block" style="margin-bottom: 50px;">
+                <h2>DAP and MOP</h2>
+            </div>
+            <br> <br>
+            <div class="main" style="padding-left: 40%;">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href=projectlist>
+                        <button type="button" class="btn btn-primary">View Report</button>
+                    </a>
+                </div>&nbsp;&nbsp;&nbsp;
+
+            </div>
+            <br><br>
+        </div>
+
+        {%endif%} {%if data == 1%}
+        <div>
+            <center>
+                <h4>Best fertilizer for your Farm</h4>
+            </center>
+            <br>
+            <div class="block" style="margin-bottom: 50px;">
+                <h2>Good NPK</h2>
+            </div>
+            <br> <br>
+            <div class="main" style="padding-left: 40%;">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href=projectlist>
+                        <button type="button" class="btn btn-primary">View Report</button>
+                    </a>
+                </div>&nbsp;&nbsp;&nbsp;
+
+            </div>
+            <br><br>
+        </div>
+        {%endif%} {%if data == 2%}
+        <div>
+            <center>
+                <h4>Best fertilizer for your Farm</h4>
+            </center>
+            <br>
+            <div class="block" style="margin-bottom: 50px;">
+                <h2>MOP</h2>
+            </div>
+            <br> <br>
+            <div class="main" style="padding-left: 40%;">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href=projectlist>
+                        <button type="button" class="btn btn-primary">View Report</button>
+                    </a>
+                </div>&nbsp;&nbsp;&nbsp;
+
+            </div>
+            <br><br>
+        </div>
+        {%endif%} {%if data == 3%}
+        <div>
+            <center>
+                <h4>Best fertilizer for your Farm</h4>
+            </center>
+            <br>
+            <div class="block" style="margin-bottom: 50px;">
+                <h2>Urea and DAP</h2>
+            </div>
+            <br> <br>
+            <div class="main" style="padding-left: 40%;">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href=projectlist>
+                        <button type="button" class="btn btn-primary">View Report</button>
+                    </a>
+                </div>&nbsp;&nbsp;&nbsp;
+
+            </div>
+            <br><br>
+        </div>
+        {%endif%} {%if data == 4%}
+        <div>
+            <center>
+                <h4>Best fertilizer for your Farm</h4>
+            </center>
+            <br>
+            <div class="block" style="margin-bottom: 50px;">
+                <h2>Urea and MOP</h2>
+            </div>
+            <br> <br>
+            <div class="main" style="padding-left: 40%;">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href=projectlist>
+                        <button type="button" class="btn btn-primary">View Report</button>
+                    </a>
+                </div>&nbsp;&nbsp;&nbsp;
+            </div>
+            <br><br>
+        </div>
+        {%endif%} {%if data == 5%}
+        <div>
+            <center>
+                <h4>Best fertilizer for your Farm</h4>
+            </center>
+            <br>
+            <div class="block" style="margin-bottom: 50px;">
+                <h2>Urea</h2>
+            </div>
+            <br> <br>
+            <div class="main" style="padding-left: 40%;">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href=projectlist>
+                        <button type="button" class="btn btn-primary">View Report</button>
+                    </a>
+                </div>&nbsp;&nbsp;&nbsp;
+
+            </div>
+            <br><br>
+        </div>
+        {%endif%} {%if data == 6%}
+        <div>
+            <center>
+                <h4>Best fertilizer for your Farm</h4>
+            </center>
+            <br>
+            <div class="block" style="margin-bottom: 50px;">
+                <h2>DAP</h2>
+            </div>
+            <br> <br>
+            <div class="main" style="padding-left: 40%;">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href=projectlist>
+                        <button type="button" class="btn btn-primary">View Report</button>
+                    </a>
+                </div>&nbsp;&nbsp;&nbsp;
+
+                <br><br>
+            </div>
+            {%endif%} {%if data == 7%}
+            <div>
+                <center>
+                    <h4>Best fertilizer for your Farm</h4>
+                </center>
+                <br>
+                <div class="block" style="margin-bottom: 50px;">
+                    <h2>14-35-14</h2>
+                </div>
+                <br> <br>
+                <div class="main" style="padding-left: 40%;">
+                    <div class="btn-group" role="group" aria-label="First group">
+                        <a href=projectlist>
+                            <button type="button" class="btn btn-primary">View Report</button>
+                        </a>
+                    </div>&nbsp;&nbsp;&nbsp;
+
+                </div>
+                <br><br>
+            </div>
+            {%endif%} {%if data == 8%}
+            <div>
+                <center>
+                    <h4>Best fertilizer for your Farm</h4>
+                </center>
+                <br>
+                <div class="block" style="margin-bottom: 50px;">
+                    <h2>28-28</h2>
+                </div>
+                <br> <br>
+                <div class="main" style="padding-left: 40%;">
+                    <div class="btn-group" role="group" aria-label="First group">
+                        <a href=projectlist>
+                            <button type="button" class="btn btn-primary">View Report</button>
+                        </a>
+                    </div>&nbsp;&nbsp;&nbsp;
+
+                </div>
+                <br><br>
+            </div>
+            {%endif%} {%if data == 9%}
+            <div>
+                <center>
+                    <h4>Best fertilizer for your Farm</h4>
+                </center>
+                <br>
+                <div class="block" style="margin-bottom: 50px;">
+                    <h2>17-17-17</h2>
+                </div>
+                <br> <br>
+                <div class="main" style="padding-left: 40%;">
+                    <div class="btn-group" role="group" aria-label="First group">
+                        <a href=projectlist>
+                            <button type="button" class="btn btn-primary">View Report</button>
+                        </a>
+                    </div>&nbsp;&nbsp;&nbsp;
+
+                </div>
+                <br><br>
+            </div>
+            {%endif%} {%if data == 10%}
+            <div>
+                <center>
+                    <h4>Best fertilizer for your Farm</h4>
+                </center>
+                <br>
+                <div class="block" style="margin-bottom: 50px;">
+                    <h2>20-20</h2>
+                </div>
+                <br> <br>
+                <div class="main" style="padding-left: 40%;">
+                    <div class="btn-group" role="group" aria-label="First group">
+                        <a href=projectlist>
+                            <button type="button" class="btn btn-primary">View Report</button>
+                        </a>
+                    </div>&nbsp;&nbsp;&nbsp;
+
+                </div>
+                <br><br>
+            </div>
+            {%endif%} {%if data == 11%}
+            <div>
+                <br>
+                <center>
+                    <br>
+                    <h4> Best fertilizer for your Farm</h4>
+                </center>
+
+                <div class="block" style="margin-bottom: 50px;">
+                    <h2> 10-26-26</h2>
+                </div>
+                <br> <br>
+                <div class="main" style="padding-left: 40%;">
+                    <div class="btn-group" role="group" aria-label="First group">
+                        <a href=projectlist>
+                            <button type="button" class="btn btn-primary">View Report</button>
+                        </a>
+                    </div>&nbsp;&nbsp;&nbsp;
+
+                </div>
+                <br><br>
+            </div>
+            {%endif%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="clearfix"></div>
+
+        </div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+<!-- <script src="../assets/js/main.js"></script> -->
+<script src="../assets/js/main.js"></script>
+
+<!--  Chart js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+
+<!--Chartist Chart-->
+<script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
+<script src="../assets/js/init/weather-init.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+<script src="../assets/js/init/fullcalendar-init.js"></script>
+
+<!--Local Stuff-->
+<script>
+    jQuery(document).ready(function ($) {
+        "use strict";
+
+        // Pie chart flotPie1
+        var piedata = [
+            { label: "Desktop visits", data: [[1, 32]], color: '#5c6bc0' },
+            { label: "Tab visits", data: [[1, 33]], color: '#ef5350' },
+            { label: "Mobile visits", data: [[1, 35]], color: '#66bb6a' }
+        ];
+
+        $.plot('#flotPie1', piedata, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    innerRadius: 0.65,
+                    label: {
+                        show: true,
+                        radius: 2 / 3,
+                        threshold: 1
+                    },
+                    stroke: {
+                        width: 0
+                    }
+                }
+            },
+            grid: {
+                hoverable: true,
+                clickable: true
+            }
+        });
+        // Pie chart flotPie1  End
+        // cellPaiChart
+        var cellPaiChart = [
+            { label: "Direct Sell", data: [[1, 65]], color: '#5b83de' },
+            { label: "Channel Sell", data: [[1, 35]], color: '#00bfa5' }
+        ];
+        $.plot('#cellPaiChart', cellPaiChart, {
+            series: {
+                pie: {
+                    show: true,
+                    stroke: {
+                        width: 0
+                    }
+                }
+            },
+            legend: {
+                show: false
+            }, grid: {
+                hoverable: true,
+                clickable: true
+            }
+
+        });
+        // cellPaiChart End
+        // Line Chart  #flotLine5
+        var newCust = [[0, 3], [1, 5], [2, 4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
+
+        var plot = $.plot($('#flotLine5'), [{
+            data: newCust,
+            label: 'New Data Flow',
+            color: '#fff'
+        }],
+            {
+                series: {
+                    lines: {
+                        show: true,
+                        lineColor: '#fff',
+                        lineWidth: 2
+                    },
+                    points: {
+                        show: true,
+                        fill: true,
+                        fillColor: "#ffffff",
+                        symbol: "circle",
+                        radius: 3
+                    },
+                    shadowSize: 0
+                },
+                points: {
+                    show: true,
+                },
+                legend: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                }
+            });
+        // Line Chart  #flotLine5 End
+        // Traffic Chart using chartist
+        if ($('#traffic-chart').length) {
+            var chart = new Chartist.Line('#traffic-chart', {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                series: [
+                    [0, 18000, 35000, 25000, 22000, 0],
+                    [0, 33000, 15000, 20000, 15000, 300],
+                    [0, 15000, 28000, 15000, 30000, 5000]
+                ]
+            }, {
+                low: 0,
+                showArea: true,
+                showLine: false,
+                showPoint: false,
+                fullWidth: true,
+                axisX: {
+                    showGrid: true
+                }
+            });
+
+            chart.on('draw', function (data) {
+                if (data.type === 'line' || data.type === 'area') {
+                    data.element.animate({
+                        d: {
+                            begin: 2000 * data.index,
+                            dur: 2000,
+                            from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                            to: data.path.clone().stringify(),
+                            easing: Chartist.Svg.Easing.easeOutQuint
+                        }
+                    });
+                }
+            });
+        }
+        // Traffic Chart using chartist End
+        //Traffic chart chart-js
+        if ($('#TrafficChart').length) {
+            var ctx = document.getElementById("TrafficChart");
+            ctx.height = 150;
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                    datasets: [
+                        {
+                            label: "Visit",
+                            borderColor: "rgba(4, 73, 203,.09)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(4, 73, 203,.5)",
+                            data: [0, 2900, 5000, 3300, 6000, 3250, 0]
+                        },
+                        {
+                            label: "Bounce",
+                            borderColor: "rgba(245, 23, 66, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(245, 23, 66,.5)",
+                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                            data: [0, 4200, 4500, 1600, 4200, 1500, 4000]
+                        },
+                        {
+                            label: "Targeted",
+                            borderColor: "rgba(40, 169, 46, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(40, 169, 46, .5)",
+                            pointHighlightStroke: "rgba(40, 169, 46,.5)",
+                            data: [1000, 5200, 3600, 2600, 4200, 5300, 0]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    }
+
+                }
+            });
+        }
+        //Traffic chart chart-js  End
+        // Bar Chart #flotBarChart
+        $.plot("#flotBarChart", [{
+            data: [[0, 18], [2, 8], [4, 5], [6, 13], [8, 5], [10, 7], [12, 4], [14, 6], [16, 15], [18, 9], [20, 17], [22, 7], [24, 4], [26, 9], [28, 11]],
+            bars: {
+                show: true,
+                lineWidth: 0,
+                fillColor: '#ffffff8a'
+            }
+        }], {
+            grid: {
+                show: false
+            }
+        });
+        // Bar Chart #flotBarChart End
+    });
+
+    // Menu Trigger
+$('#menuToggle').on('click', function(event) {
+var windowWidth = $(window).width();
+if (windowWidth<1010) {
+$('body').removeClass('open');
+if (windowWidth<760){
+  $('#left-panel').slideToggle();
+} else {
+  $('#left-panel').toggleClass('open-menu');
+}
+} else {
+$('body').toggleClass('open');
+$('#left-panel').removeClass('open-menu');
+}
+
+});
+
+
+$(".menu-item-has-children.dropdown").each(function() {
+$(this).on('click', function() {
+var $temp_text = $(this).children('.dropdown-toggle').html();
+$(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>');
+});
+});
+</script>
+</body>
+
+</html>

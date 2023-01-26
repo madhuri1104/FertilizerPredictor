@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Report Generation</title>
+  <link rel="shortcut icon" href="/static/assets/img/student-grade.jpg" />
+
+	<script src="static/jquery.min.js"></script>
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<style>
+  
+        .table{
+    border-spacing: 0;
+    margin: 1rem;
+    border: 1px solid black;
+    border-collapse: collapse;
+    position:center;
+}
+
+.table__row:nth-child(even){
+    background-color: #e5e5e5;
+
+}
+
+.table.header{
+    text-align: center;
+}
+
+.table__cell{
+    padding: 8px;
+    text-align: center;
+}
+
+.central{
+    margin: auto;
+    align-items: center;
+    align-self: center;
+    border: 2px solid black;
+    width: fit-content;
+    padding: 20px;
+}
+
+.centrall{
+    margin: auto;
+    width: fit-content;
+    padding: 20px;
+    align-items: center;
+    align-self: center;
+   
+}
+
+.btn{
+  width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn:hover{
+  background-color: rgb(25, 135, 8);
+}
+    
+</style>
+<body>
+
+
+
+<div id="Report">
+  <div class="central">
+    <center>
+        
+        <h4>--------------------User Details---------------------</h4>
+        <b>User_ID : </b> {{user_data[0][0]}} <br>
+        <b>Name : </b> {{user_data[0][1]}} <br>
+        <b>Village : </b> {{user_data[0][2]}} <br>
+        <b>Mobile Number : </b> {{user_data[0][3]}} <br>
+        <b>Email : </b> {{user_data[0][4]}} <br> <br> <br>
+    
+    </div>
+    </center>
+    
+    <div class="centrall">
+    
+    
+    <center>
+        <h4>-------------------- Soil Test Details---------------------</h4>
+        <center>
+        <table class="table">
+            <tr class="table__header">
+                {% for header in headings %}
+                <th class="table__cell"> {{header}} </th>
+                {% endfor %}
+            </tr>
+            {% for row in record_data %}
+            <tr class="table__row">
+                {% for cell in row %}
+                
+                <td class="table__cell"> {{cell}} </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}    
+        </table>
+    </center>
+    
+    </div>
+    </div>
+
+
+
+    <a  href="javascript:void(0)" class="btn-download">Download PDF  </a>
+
+
+
+    <script src="static/jspdf.debug.js"></script>
+    <script src="static/html2canvas.min.js"></script>
+    <script src="static/html2pdf.min.js"></script>
+    
+    
+    <script>
+    
+        const options = {
+          margin: 0.5,
+          filename: 'invoice.pdf',
+          image: { 
+            type: 'jpeg', 
+            quality: 500
+          },
+          html2canvas: { 
+            scale: 1 
+          },
+          jsPDF: { 
+            unit: 'in', 
+            format: 'letter', 
+            orientation: 'portrait' 
+          }
+        }
+        
+        $('.btn-download').click(function(e){
+          e.preventDefault();
+          const element = document.getElementById('Report');
+          html2pdf().from(element).set(options).save();
+        });
+    
+    
+        function printDiv(divName) {
+         var printContents = document.getElementById(divName).innerHTML;
+         var originalContents = document.body.innerHTML;
+    
+         document.body.innerHTML = printContents;
+    
+         window.print();
+    
+         document.body.innerHTML = originalContents;
+    }
+        </script>
+    
+</body>
+</html>

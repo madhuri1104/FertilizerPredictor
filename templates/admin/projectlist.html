@@ -1,0 +1,211 @@
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-
+        scale=1">
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="printThis.js"></script>
+<link rel="shortcut icon" href="/static/assets/img/student-grade.jpg" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Raleway">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Raleway">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="/static/index.css">
+<title>Report</title>
+    <!-- Prevent the demo from appearing in search engines -->
+    <meta name="robots" content="noindex">
+
+    <!-- App CSS -->
+    <link type="text/css" href="assets/css/app.css" rel="stylesheet">
+    <link type="text/css" href="assets/css/app.rtl.css" rel="stylesheet">
+
+    <!-- Simplebar -->
+    <link type="text/css" href="assets/vendor/simplebar.css" rel="stylesheet">
+
+
+<style>
+tr:nth-child(even)
+{
+background-color: white;
+}
+
+ @media print {
+  .noPrint{
+    display:none;
+  }
+}
+
+body {font-family: Verdana, sans-serif;}
+
+</style>
+</head>
+
+<body style="background-color:White;border:1px solid;left-padding:10%" >
+<br><br>
+<center><h1><b>Report</b></h1></center>
+<br><br>
+    <div style="color:Black;text-align:left;font-size:20px">
+     {% for item in data %}
+            <tr >
+
+                <ul><b>Test ID :</b> {{item.Test_ID}}</ul>
+                <ul><b>Name : </b>{{item.Name}}</ul>
+                <ul><b>Mobile Number : </b>{{item.Mobile_Number}}</ul>
+                <ul><b>Location of Farm : </b>{{item.Location_of_Farm}}</ul>
+                <ul><b>Survey/Gat Number : </b>{{item.Gat_Number}}</ul>
+                </tr>
+        {% endfor %}
+    </div>
+
+    <center><table  border="1px black"  cellpadding="8px" width="70%" style="padding:50px; background-color:White ;position:center;
+    border-collapse: collapse;">
+                    <tr style="background-color:White; color:black ;text-align:center; font-size:20px;font-weight:10px" >
+                         <td><b>Temperature</b></td>
+                         <td><b>Humidity</b></td>
+                         <td><b>N</b></td>
+                         <td><b>P</b></td>
+                         <td><b>K</b></td>
+                         <td><b>Crop Type</b></td>
+                         <td><b>Soil Type</b></td>
+                    </tr>
+                    {% for item in data %}
+                    <tr style="text-align:center" >
+                         <td>{{item.Temperature}}</td>
+                         <td>{{item.Humidity}}</td>
+                         <td>{{item.N}}</td>
+                         <td>{{item.P}}</td>
+                         <td>{{item.K}}</td>
+
+                        {% if item.Crop_Type == '1' %}
+                                  <td>Rice</td>
+                        {% elif item.Crop_Type == '2' %}
+                                  <td>Coconut</td>
+                        {% elif item.Crop_Type == '3' %}
+                                  <td>Maize</td>
+                        {% elif item.Crop_Type == '4' %}
+                                  <td>Cotton</td>
+                        {% elif item.Crop_Type == '5' %}
+                                  <td>Tobacco</td>
+                        {% elif item.Crop_Type == '6' %}
+                                  <td>Paddy</td>       
+                        {% elif item.Crop_Type == '7' %}
+                                  <td>Barley</td>          
+                        {% elif item.Crop_Type == '8' %}
+                                   <td>Wheat</td>
+                        {% elif item.Crop_Type == '9' %}
+                                  <td>Millets</td>
+                        {% elif item.Crop_Type == '10' %}
+                                  <td>Oil seeds</td>
+                        {% elif item.Crop_Type == '11' %}
+                                  <td>Sugarcane</td>
+                        {% elif item.Crop_Type == '12' %}
+                                  <td>Pulses</td>
+                        {% elif item.Crop_Type == '13' %}
+                                  <td>Ground Nuts</td>
+                        {% endif %}
+
+                        {% if item.Soil_Type == '1' %}
+                                  <td>Clayey</td>
+                        {% elif item.Soil_Type == '2' %}
+                                  <td>Laterite</td>
+                        {% elif item.Soil_Type == '3' %}
+                                  <td>Silty Clay</td>
+                        {% elif item.Soil_Type == '4' %}
+                                  <td>Sandy</td>
+                        {% elif item.Soil_Type == '5' %}
+                                  <td>Coastal</td>
+                        {% elif item.Soil_Type == '6' %}
+                                  <td>Clay Loam</td>
+                        {% elif item.Soil_Type == '7' %}
+                                   <td>Alluvial</td>
+                        {% elif item.Soil_Type == '8' %}
+                                  <td>Sandy</td>
+                        {% elif item.Soil_Type == '9' %}
+                                  <td>Loamy</td>
+                        {% elif item.Soil_Type == '10' %}
+                                  <td>Black</td>
+                        {% elif item.Soil_Type == '11' %}
+                                  <td>Red</td>
+                        {% endif %}
+                    </tr>
+            {% endfor %}
+    </table>
+        </center>
+
+
+
+
+
+<br>
+<br>
+
+
+<div style="color:Black;text-align:left;padding-left:100px;padding-right:100px">
+     {% for item in data %}
+            <h6 style="border:Black;border-width:5px;
+            border-style:solid;
+            text-align:center;
+            padding:10px;
+            width:100%;
+            font-size:30px;
+            ">
+                <tr>
+                    <ul>Fertilizer : {{item.Fertilizer}}</ul>
+                </tr>
+            </h6>
+        {% endfor %}
+</div>
+
+
+<br><br><br>
+<div style="color:Black;text-align:left;font-size:20px">
+     {% for item in data %}
+            <tr >
+
+                <ul><b>Date :</b> {{item.Processed_Date.strftime('%d-%m-%Y')}}</ul>
+
+            </tr>
+        {% endfor %}
+</div>
+<div style="color:Black;text-align:right;">
+     {% for item in data %}
+            <tr >
+                <ul style="padding-right:200px;">Tested By <br></ul>
+                    <div style="padding-right:150px;font-size:20px">{{item.Admin_Name}}
+
+            </tr>
+        {% endfor %}
+    </div>
+<br>
+<br>
+
+<center>
+    <div class="noPrint">
+            <div class="noPrint">
+            <button onclick="printFunction()" class="btn btn-success" type="button" >
+            <i class="fa fa-download"></i> Download</button>
+        <script>
+              function printFunction() {
+                window.print();
+              }
+        </script>
+    </div>
+</center>
+
+<br>
+<br>
+<center><h4>---Thank You---</h4></center>
+</body>
+</html>
